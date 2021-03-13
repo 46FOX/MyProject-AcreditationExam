@@ -17,6 +17,12 @@ public class HomePage extends PageObject {
     @FindBy(css = ".woocommerce-error li")
     private WebElementFacade errorWarning;
 
+    @FindBy(css = ".header-bot #menu-main li:nth-child(3) a")
+    private WebElementFacade shopHyperLink;
+
+    @FindBy(css = ".header-bot #menu-main li:nth-child(4) a")
+    private WebElementFacade checkoutHyperLink;
+
     public void assertWarningMessageIs(String message) {
         assertTrue(element(errorWarning).containsText(message));
 
@@ -27,4 +33,13 @@ public class HomePage extends PageObject {
 
     }
 
+    public void clickOnShopHyperLink() {
+        waitFor(shopHyperLink);
+        clickOn(shopHyperLink);
+    }
+
+    public void clickOnCheckoutHyperLink() {
+        waitFor(checkoutHyperLink);
+        clickOn(checkoutHyperLink);
+    }
 }
