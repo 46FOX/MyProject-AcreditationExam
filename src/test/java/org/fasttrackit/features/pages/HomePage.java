@@ -23,9 +23,14 @@ public class HomePage extends PageObject {
     @FindBy(css = ".header-bot #menu-main li:nth-child(4) a")
     private WebElementFacade checkoutHyperLink;
 
+    @FindBy(css = ".cart-control .amount")
+    private WebElementFacade cart;
+
+    @FindBy(css = ".cart_item .remove")
+    private WebElementFacade removeButton;
+
     public void assertWarningMessageIs(String message) {
         assertTrue(element(errorWarning).containsText(message));
-
     }
 
     public void isLoggedIn(String message) {
@@ -41,5 +46,6 @@ public class HomePage extends PageObject {
     public void clickOnCheckoutHyperLink() {
         waitFor(checkoutHyperLink);
         clickOn(checkoutHyperLink);
+
     }
 }

@@ -45,8 +45,8 @@ public class ShopPages extends PageObject {
     @FindBy(css = ".status-publish .entry-header h2")
     private WebElementFacade entryTitle;
 
-    @FindBy(css = ".blockUI")
-    private WebElementFacade loader;
+    @FindBy(css = ".woocommerce-error li")
+    private WebElementFacade errorWarning;
 
     public void selectProduct() {
         waitFor(cap);
@@ -90,5 +90,9 @@ public class ShopPages extends PageObject {
         Thread.sleep(7500);
         waitFor(entryTitle);
         assertTrue(element(entryTitle).getText().contains("Order received".toUpperCase()));
+    }
+
+    public void assertWarningMessageIs(String message) {
+        assertTrue(element(errorWarning).containsText(message));
     }
 }

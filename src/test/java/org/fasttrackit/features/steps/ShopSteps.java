@@ -36,4 +36,8 @@ public class ShopSteps {
     public void assertOrderIsReceived() throws InterruptedException {
         shopPages.isOrderReceived();
     }
+
+    public void assertErrorMessageContains(String errorMessage) {
+        shopPages.assertWarningMessageIs(errorMessage);
+    }
 }
