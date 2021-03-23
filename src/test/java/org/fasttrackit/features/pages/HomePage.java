@@ -1,8 +1,10 @@
 package org.fasttrackit.features.pages;
 
+import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
+import org.openqa.selenium.NoSuchElementException;
 
 import static org.junit.Assert.assertTrue;
 
@@ -29,6 +31,9 @@ public class HomePage extends PageObject {
     @FindBy(css = ".cart_item .remove")
     private WebElementFacade removeButton;
 
+    @FindBy(css = ".cart-empty")
+    private WebElementFacade emptyCartMessage;
+
     public void assertWarningMessageIs(String message) {
         assertTrue(element(errorWarning).containsText(message));
     }
@@ -47,5 +52,18 @@ public class HomePage extends PageObject {
         waitFor(checkoutHyperLink);
         clickOn(checkoutHyperLink);
 
+    }
+
+    public void removeItem() {
+        waitFor(myAccountHyperLink);
+        clickOn(cart);
+        try {
+            if (getDriver().findElement(By.cssSelector(".cart_item .remove")).isDisplayed()) {
+                waitFor(removeButton);
+                clickOn(removeButton);
+                assertTrue(element(emptyCartMessage).getText().contains("Your cart is currently empty."));
+            }
+        } catch (NoSuchElementException ignore) {
+        }
     }
 }

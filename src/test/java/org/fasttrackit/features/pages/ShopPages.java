@@ -71,6 +71,7 @@ public class ShopPages extends PageObject {
     }
 
     public void fillDataToMandatoryFields(String firstName, String lastName, String houseNumber, String townCity, String postCode, String phone) {
+        waitOnPage();
         waitFor(billingFirstName);
         typeInto(billingFirstName, firstName);
         waitFor(billingLastName);

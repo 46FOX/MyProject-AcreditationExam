@@ -20,4 +20,9 @@ public class HomeSteps {
     public void clickCheckoutTab() {
         homePage.clickOnCheckoutHyperLink();
     }
+
+    @Step
+    public void removeCartItems() {
+        homePage.removeItem();
+    }
 }

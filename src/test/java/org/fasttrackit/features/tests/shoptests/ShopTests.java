@@ -30,6 +30,7 @@ public class ShopTests {
     @Test
     public void addProductToCartTest() {
         loginSteps.login(username, password);
+        homeSteps.removeCartItems();
         homeSteps.clickShopTab();
         shopSteps.addProductToCart();
         shopSteps.assertPriceDisplayedIs("16,00");
